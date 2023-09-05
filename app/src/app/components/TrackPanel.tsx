@@ -18,7 +18,7 @@ export default function TrackPanel(props: TrackPanelProps) {
                 height: 300,
                 backgroundColor: 'primary.dark',
             }}>
-               <p> {'total tracks: ' + props.tracks} </p>
+               <p> {'total tracks listened to: ' + props.tracks} </p>
                 <p>{'user name: ' + props.user} </p>
             </Box>
         </Grid>);

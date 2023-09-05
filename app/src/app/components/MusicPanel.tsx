@@ -4,8 +4,9 @@ import ButtonPanel from "./ButtonPanel";
 import TrackPanel from "./TrackPanel";
 import Box from "@mui/material/Box";
 import { track, user } from "../page";
+import Grid from "@mui/material/Grid";
 
-interface MusicPanelProps{
+interface MusicPanelProps {
     user: user;
     toptracks: track;
 }
@@ -17,10 +18,11 @@ export default function MusicPanel(props: MusicPanelProps) {
                 width: 600,
                 height: 700,
                 backgroundColor: 'primary.light',
-
             }}>
-                <p>mp3</p>
-                <TrackPanel {...{user: props.user.user.name,tracks:props.user.user.track_count, toptracks:props.toptracks}}></TrackPanel>
+                <Grid container justifyContent="center">
+                    <p>mp3</p>
+                </Grid>
+                <TrackPanel {...{ user: props.user.user.name, tracks: props.user.user.track_count, toptracks: props.toptracks }}></TrackPanel>
                 <ButtonPanel></ButtonPanel>
             </Box>
         </div>
