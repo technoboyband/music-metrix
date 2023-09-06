@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 
 interface MusicPanelProps {
     user: user;
-    toptracks: track;
+    toptracks: track[];
 }
 
 export default function MusicPanel(props: MusicPanelProps) {
@@ -17,10 +17,11 @@ export default function MusicPanel(props: MusicPanelProps) {
             <Box sx={{
                 width: 600,
                 height: 700,
-                backgroundColor: 'primary.light',
+                backgroundColor: '#c682b0',
+                borderRadius: '16px',
             }}>
                 <Grid container justifyContent="center">
-                    <p>mp3</p>
+                    <p>{props.user.user.name}'s mp3</p>
                 </Grid>
                 <TrackPanel {...{ user: props.user.user.name, tracks: props.user.user.track_count, toptracks: props.toptracks }}></TrackPanel>
                 <ButtonPanel></ButtonPanel>

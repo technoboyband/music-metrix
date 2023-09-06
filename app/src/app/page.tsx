@@ -1,10 +1,8 @@
 
 import Container from '@mui/material/Container';
 import MusicPanel from './components/MusicPanel';
-import { useEffect, useState } from 'react';
 
-
-export interface user{
+export interface user {
   user: {
     name: string;
     url: string;
@@ -12,37 +10,44 @@ export interface user{
   };
 }
 
-export interface track{
-toptracks: {
-  track: {
-    name: string;
-    playcount: number;
+export interface toptracks {
+  toptracks: {
+    track: Array<track>;
   };
 }
+
+export interface track {
+  id: string;
+  name: string;
+  url: string;
+  playcount: number;
 }
 
-
-
-function getUserInfo(): Promise<user>{
-    return fetch('http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=hackerdaddie&api_key=9d126053b6fe4fca733e9b5861d21404&format=json')
-      .then((response) => response.json())
-      .then((json) => {return json})
+function getUserInfo(): Promise<user> {
+  return fetch('http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=hackerdaddie&api_key=9d126053b6fe4fca733e9b5861d21404&format=json')
+    .then((response) => response.json())
+    .then((json) => { return json })
 }
 
-function getWeeklyTrack(): Promise<track>{
+function getAllTimeTopTracks(): Promise<toptracks> {
   return fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=hackerdaddie&api_key=9d126053b6fe4fca733e9b5861d21404&format=json')
-  .then((response) => response.json())
-  .then((json) => {return json})
+    .then((response) => response.json())
+    .then((json) => { return json })
 }
 
 export default async function Home() {
-  
-const user = await getUserInfo() as user;
-const weeklyTrack = await getWeeklyTrack() as track;
-console.log(weeklyTrack.toptracks);
+  const user = await getUserInfo() as user;
+  const topTrackResponse = await getAllTimeTopTracks() as toptracks;
+
+  let allTimeTopTracks: track[] = [];
+  topTrackResponse.toptracks.track.forEach(t => {
+    let track = { name: t.name, id: t.id, url: t.url, playcount: t.playcount };
+    allTimeTopTracks.push(track);
+  });
+  console.log(allTimeTopTracks)
   return (
     <Container maxWidth="sm">
-      <MusicPanel {...{user:user, toptracks: weeklyTrack}}></MusicPanel>
+      <MusicPanel {...{ user: user, toptracks: allTimeTopTracks }}></MusicPanel>
     </Container>
   )
 }
