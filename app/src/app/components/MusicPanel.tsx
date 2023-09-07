@@ -1,11 +1,10 @@
 'use client'
-import React, { useEffect, useState } from "react"
+import React from "react"
 import ButtonPanel from "./ButtonPanel";
 import TrackPanel from "./TrackPanel";
 import Box from "@mui/material/Box";
-import { track, user } from "../page";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
+import { track, user } from "../types/types";
 
 interface MusicPanelProps {
     user: user;
@@ -26,7 +25,7 @@ export default function MusicPanel(props: MusicPanelProps) {
                 </Grid>
                 <TrackPanel {...{ user: props.user.user.name, tracks: props.user.user.track_count, toptracks: props.toptracks }}></TrackPanel>
                 <Grid container sx={{ marginTop: '10%' }}>
-                <ButtonPanel></ButtonPanel>
+                    <ButtonPanel></ButtonPanel>
                 </Grid>
             </Box>
         </div>
