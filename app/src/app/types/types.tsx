@@ -1,9 +1,13 @@
-export interface user {
-    user: {
-        name: string;
-        url: string;
-        track_count: number;
-    };
+const view = "TOP_STATS" || "WEEKLY_STATS" || "MONTHLY_STATS";
+
+export interface UserResponse {
+    user: User;
+}
+
+export interface User {
+    name: string;
+    url: string;
+    track_count: number;
 }
 
 export interface toptracks {
@@ -20,7 +24,7 @@ export interface track {
 }
 
 export interface topArtists {
-    topArtists: {
+    topartists: {
         artist: Array<Artist>;
     };
 }

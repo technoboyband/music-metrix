@@ -6,6 +6,22 @@ import IconButton from "@mui/material/IconButton";
 import FastRewindIcon from '@mui/icons-material/FastRewind';
 import FastForwardIcon from '@mui/icons-material/FastForward';
 
+interface fastForwardButtonProps{
+    onClick: () => void;
+}
+
+interface fastRewindButtonProps{
+    onClick: () => void;
+}
+
+function fastForwardButton(props: fastForwardButtonProps){
+    return (<IconButton><FastForwardIcon></FastForwardIcon></IconButton>);
+}
+
+function fastRewindButton(props: fastRewindButtonProps){
+    <IconButton><FastRewindIcon></FastRewindIcon></IconButton>
+}
+
 export default function ButtonPanel() {
     return (
         <Grid container display="flex" justifyContent="center">

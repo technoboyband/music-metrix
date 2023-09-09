@@ -1,11 +1,11 @@
 
 import Container from '@mui/material/Container';
 import MusicPanel from './components/MusicPanel';
-import { Artist, topArtists, toptracks, track, user } from './types/types';
+import { Artist, topArtists, toptracks, track, UserResponse } from './types/types';
 import { getAllTimeTopArtists, getAllTimeTopTracks, getUserInfo } from './api/fetchProfileData';
 
 export default async function Home() {
-  const user = await getUserInfo() as user;
+  const user = await getUserInfo() as UserResponse;
   const topTrackResponse = await getAllTimeTopTracks() as toptracks;
   const topArtistResponse = await getAllTimeTopArtists() as topArtists;
 
@@ -16,7 +16,7 @@ export default async function Home() {
   });
 
   let allTimeTopArtists: Artist[] = [];
-  topArtistResponse.topArtists.artist.forEach(a => {
+  topArtistResponse.topartists.artist.forEach(a => {
     let artist = {name: a.name, url: a.url, playcount: a.playcount};
     allTimeTopArtists.push(artist);
   })
@@ -24,7 +24,7 @@ export default async function Home() {
   console.log(allTimeTopTracks)
   return (
     <Container maxWidth="sm">
-      <MusicPanel {...{ user: user, toptracks: allTimeTopTracks }}></MusicPanel>
+      <MusicPanel {...{ user: user.user, toptracks: allTimeTopTracks, topartists: allTimeTopArtists}}></MusicPanel>
     </Container>
   )
 }
