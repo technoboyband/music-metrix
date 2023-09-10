@@ -12,8 +12,14 @@ interface MusicPanelProps {
     topartists: Artist[];
 }
 
+enum stats {
+    top,
+    weekly,
+    monthly,
+}
+
 export default function MusicPanel(props: MusicPanelProps) {
-    let stats = "TOP_STATS";
+    let currentView = stats.top;
     return (
         <div>
             <Box sx={{
