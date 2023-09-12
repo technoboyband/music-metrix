@@ -6,23 +6,12 @@ import IconButton from "@mui/material/IconButton";
 import FastRewindIcon from '@mui/icons-material/FastRewind';
 import FastForwardIcon from '@mui/icons-material/FastForward';
 
-interface fastForwardButtonProps{
-    onClick: () => void;
+interface ButtonProps {
+    onForwardButtonClick: () => void;
+    onRewindButtonClick: () => void;
 }
 
-interface fastRewindButtonProps{
-    onClick: () => void;
-}
-
-function fastForwardButton(props: fastForwardButtonProps){
-    return (<IconButton><FastForwardIcon></FastForwardIcon></IconButton>);
-}
-
-function fastRewindButton(props: fastRewindButtonProps){
-    <IconButton><FastRewindIcon></FastRewindIcon></IconButton>
-}
-
-export default function ButtonPanel() {
+export default function ButtonPanel(props: ButtonProps) {
     return (
         <Grid container display="flex" justifyContent="center">
             <Box sx={{
@@ -35,7 +24,7 @@ export default function ButtonPanel() {
             }}>
                 <Grid container display="flex" direction="column" justifyContent="center" alignContent="center">
                     <Grid container justifyContent="center" alignContent="center" >
-                        <IconButton><FastRewindIcon></FastRewindIcon></IconButton>
+                        <IconButton onClick={props.onRewindButtonClick}><FastRewindIcon></FastRewindIcon></IconButton>
                     </Grid>
                     <Grid container display="flex" direction="row" justifyContent="center" >
                         <Button>MENU</Button>
@@ -52,7 +41,7 @@ export default function ButtonPanel() {
                         <IconButton><PlayArrowIcon></PlayArrowIcon></IconButton>
                     </Grid>
                     <Grid container display="flex" direction="row" justifyContent="center">
-                        <IconButton><FastForwardIcon></FastForwardIcon></IconButton>
+                        <IconButton onClick={props.onForwardButtonClick}><FastForwardIcon></FastForwardIcon></IconButton>
                     </Grid>
                 </Grid>
             </Box>

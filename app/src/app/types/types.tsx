@@ -1,4 +1,8 @@
-const view = "TOP_STATS" || "WEEKLY_STATS" || "MONTHLY_STATS";
+export enum stats {
+    top,
+    weekly,
+    monthly,
+}
 
 export interface UserResponse {
     user: User;
@@ -10,13 +14,13 @@ export interface User {
     track_count: number;
 }
 
-export interface toptracks {
+export interface topTracks {
     toptracks: {
-        track: Array<track>;
+        track: Array<Track>;
     };
 }
 
-export interface track {
+export interface Track {
     id: string;
     name: string;
     url: string;
