@@ -4,17 +4,15 @@ import ButtonPanel from "./ButtonPanel";
 import TrackPanel from "./TrackPanel";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { Artist, Track, User, stats } from "../types/types";
+import { Artist, MonthlyStats, Track, User, WeeklyStats, stats } from "../types/types";
 
 export interface MusicPanelProps {
     user: User;
     toptracks: Track[];
     topartists: Artist[];
     view: number;
-    weeklytoptracks: Track[];
-    weeklytopartists: Artist[];
-    monthlytoptracks: Track[];
-    monthlytopartists: Artist[];
+    weeklyStats: WeeklyStats;
+    monthlyStats: MonthlyStats;
 }
 
 export default function MusicPanel(props: MusicPanelProps) {
@@ -45,11 +43,11 @@ export default function MusicPanel(props: MusicPanelProps) {
                 borderRadius: '16px',
             }}>
                 <Grid container justifyContent="center">
-                    <p>{props.user.name}'s mp3</p>
+                    <p>{props.user.name}s mp3</p>
                 </Grid>
                 <TrackPanel {...{ view: currentView, user: props.user.name, tracks: props.user.track_count, toptracks: props.toptracks,
-                     topartists: props.topartists, weeklytoptracks: props.weeklytoptracks, weeklytopartists: props.weeklytopartists,
-                     monthlytoptracks: props.monthlytoptracks, monthlytopartists: props.monthlytopartists }}></TrackPanel>
+                     topartists: props.topartists, weeklytoptracks: props.weeklyStats?.weeklyTopTracks, weeklytopartists: props.weeklyStats?.weeklyTopArtists,
+                     monthlytoptracks: props.monthlyStats?.monthlyTopTracks, monthlytopartists: props.monthlyStats?.monthlyTopArtists }}></TrackPanel>
                 <Grid container sx={{ marginTop: '10%' }}>
                     <ButtonPanel {...{ onForwardButtonClick: onForwardButtonClick, onRewindButtonClick: onRewindButtonClick }}></ButtonPanel>
                 </Grid>

@@ -1,11 +1,12 @@
 
 import Container from '@mui/material/Container';
 import MusicPanel, { MusicPanelProps } from './components/MusicPanel';
-import { Artist, stats, topArtists, topTracks, Track, UserResponse } from './types/types';
+import { Artist, MonthlyStats, stats, topArtists, topTracks, Track, UserResponse, WeeklyStats } from './types/types';
 import { getAllTimeTopArtists, getAllTimeTopTracks, getMonthlyTopArtists, getMonthlyTopTracks, getUserInfo, getWeeklyTopArtists, getWeeklyTopTracks } from './api/fetchProfileData';
 
 export default async function Home() {
   const user = await getUserInfo() as UserResponse;
+  console.log(user)
   const topTrackResponse = await getAllTimeTopTracks() as topTracks;
   const topArtistResponse = await getAllTimeTopArtists() as topArtists;
 
@@ -53,16 +54,23 @@ export default async function Home() {
     monthlyTopArtists.push(artist);
   })
 
+  const weeklyStats: WeeklyStats = {
+    weeklyTopTracks: weeklyTopTracks,
+    weeklyTopArtists: weeklyTopArtists,
+  };
+
+  const monthlyStats: MonthlyStats = {
+    monthlyTopTracks: monthlyTopTracks,
+    monthlyTopArtists: monthlyTopArtists,
+  };
+
   const props: MusicPanelProps = {
     user: user.user,
     toptracks: allTimeTopTracks,
     topartists: allTimeTopArtists,
     view: currentView,
-    weeklytoptracks: weeklyTopTracks,
-    weeklytopartists: weeklyTopArtists,
-    monthlytoptracks: monthlyTopTracks,
-    monthlytopartists: monthlyTopArtists,
-
+    weeklyStats: weeklyStats,
+    monthlyStats: monthlyStats,
   }
 
   return (

@@ -38,3 +38,13 @@ export interface Artist {
     url: string;
     playcount: number;
 }
+
+export interface WeeklyStats {
+    weeklyTopTracks: Array<Track>;
+    weeklyTopArtists: Array<Artist>;
+}
+
+export interface MonthlyStats {
+    monthlyTopTracks: Array<Track>;
+    monthlyTopArtists: Array<Artist>;
+}
