@@ -46,8 +46,7 @@ export default function MusicPanel(props: MusicPanelProps) {
                     <p>{props.user.name}s mp3</p>
                 </Grid>
                 <TrackPanel {...{ view: currentView, user: props.user.name, tracks: props.user.track_count, toptracks: props.toptracks,
-                     topartists: props.topartists, weeklytoptracks: props.weeklyStats?.weeklyTopTracks, weeklytopartists: props.weeklyStats?.weeklyTopArtists,
-                     monthlytoptracks: props.monthlyStats?.monthlyTopTracks, monthlytopartists: props.monthlyStats?.monthlyTopArtists }}></TrackPanel>
+                     topartists: props.topartists, weeklyStats: props.weeklyStats, monthlyStats: props.monthlyStats }}></TrackPanel>
                 <Grid container sx={{ marginTop: '10%' }}>
                     <ButtonPanel {...{ onForwardButtonClick: onForwardButtonClick, onRewindButtonClick: onRewindButtonClick }}></ButtonPanel>
                 </Grid>

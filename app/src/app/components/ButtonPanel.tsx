@@ -13,36 +13,35 @@ interface ButtonProps {
 
 export default function ButtonPanel(props: ButtonProps) {
     return (
-        <Grid container display="flex" justifyContent="center">
+        <Grid container display="flex" justifyContent="center" spacing={3}>
             <Box sx={{
                 width: 150,
                 height: 150,
                 backgroundColor: '#a09c8c',
                 borderRadius: '50%',
-                alignContent: "center",
                 display: "flex",
             }}>
-                <Grid container display="flex" direction="column" justifyContent="center" alignContent="center">
-                    <Grid container justifyContent="center" alignContent="center" >
-                        <IconButton onClick={props.onRewindButtonClick}><FastRewindIcon></FastRewindIcon></IconButton>
+                <Grid container justifyContent="center" alignContent="center" >
+                    <IconButton onClick={props.onRewindButtonClick}><FastRewindIcon></FastRewindIcon></IconButton>
+                </Grid>
+                <Grid container display="flex" direction="row" justifyContent="center" >
+                    <Button>MENU</Button>
+                    <Grid container justifyContent="center" alignContent="center">
+                        <Box sx={{
+                            width: 75,
+                            height: 75,
+                            backgroundColor: '#c682b0',
+                            borderRadius: '50%',
+                            display: "flex",
+                        }}>
+                        </Box>
                     </Grid>
                     <Grid container display="flex" direction="row" justifyContent="center" >
-                        <Button>MENU</Button>
-                        <Grid container justifyContent="center" alignContent="center">
-                            <Box sx={{
-                                width: 75,
-                                height: 75,
-                                backgroundColor: '#c682b0',
-                                borderRadius: '50%',
-                                display: "flex",
-                            }}>
-                            </Box>
-                        </Grid>
                         <IconButton><PlayArrowIcon></PlayArrowIcon></IconButton>
                     </Grid>
-                    <Grid container display="flex" direction="row" justifyContent="center">
-                        <IconButton onClick={props.onForwardButtonClick}><FastForwardIcon></FastForwardIcon></IconButton>
-                    </Grid>
+                </Grid>
+                <Grid container justifyContent="center" alignContent="center">
+                    <IconButton onClick={props.onForwardButtonClick}><FastForwardIcon></FastForwardIcon></IconButton>
                 </Grid>
             </Box>
         </Grid>);
