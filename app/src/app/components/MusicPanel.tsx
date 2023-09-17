@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Artist, MonthlyStats, Track, User, WeeklyStats, stats } from "../types/types";
 
+//TODO: condense top stat props
 export interface MusicPanelProps {
     user: User;
     toptracks: Track[];
@@ -34,6 +35,7 @@ export default function MusicPanel(props: MusicPanelProps) {
         }
     }
 
+    //TODO: Fix prop hell
     return (
         <div>
             <Box sx={{
@@ -41,12 +43,13 @@ export default function MusicPanel(props: MusicPanelProps) {
                 height: 700,
                 backgroundColor: '#c682b0',
                 borderRadius: '16px',
+                boxShadow: '10px 10px 5px #aaaaaa', //idk if i like this
             }}>
                 <Grid container justifyContent="center">
                     <p>{props.user.name}s mp3</p>
                 </Grid>
                 <TrackPanel {...{ view: currentView, user: props.user.name, tracks: props.user.track_count, toptracks: props.toptracks,
-                     topartists: props.topartists, weeklyStats: props.weeklyStats, monthlyStats: props.monthlyStats }}></TrackPanel>
+                     topartists: props.topartists, weeklyStats: props.weeklyStats, monthlyStats: props.monthlyStats }}></TrackPanel> 
                 <Grid container sx={{ marginTop: '10%' }}>
                     <ButtonPanel {...{ onForwardButtonClick: onForwardButtonClick, onRewindButtonClick: onRewindButtonClick }}></ButtonPanel>
                 </Grid>
